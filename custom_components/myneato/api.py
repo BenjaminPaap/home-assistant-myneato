@@ -4,7 +4,7 @@ from asyncio import run_coroutine_threadsafe
 from typing import Any
 
 import logging
-from .lib.pyneato import (
+from pyneato import (
     Neato,
     OrbitalPasswordSession,
 )

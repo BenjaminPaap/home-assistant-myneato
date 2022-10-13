@@ -10,7 +10,7 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_EMAIL, CONF_USERNAME, CONF_PASSWORD, CONF_TOKEN
 
 from .const import MYNEATO_DOMAIN
-from .lib.pyneato import (
+from pyneato import (
     OrbitalPasswordSession,
 )
 

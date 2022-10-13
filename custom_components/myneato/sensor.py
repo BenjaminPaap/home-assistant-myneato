@@ -5,8 +5,8 @@ from datetime import timedelta
 import logging
 from typing import Any
 
-from .lib.pyneato.exception import MyNeatoRobotException
-from .lib.pyneato.robot import Robot
+from pyneato.exception import MyNeatoRobotException
+from pyneato.robot import Robot
 
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
 from homeassistant.config_entries import ConfigEntry

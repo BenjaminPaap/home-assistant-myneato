@@ -13,20 +13,12 @@ from homeassistant.core import HomeAssistant
 from homeassistant.const import Platform, CONF_TOKEN
 from homeassistant.helpers.typing import ConfigType
 
-from .lib.pyneato import Account
+from pyneato import Account
 
 from .const import MYNEATO_DOMAIN, MYNEATO_LOGIN, MYNEATO_CONFIG, MYNEATO_ROBOTS, MYNEATO_FLOORPLANS
 from .api import ConfigEntrySession
 from .hub import MyNeatoHub
 
-directory_path = os.getcwd()
-sys.path.append("%spyneato"%(
-    str(pathlib.Path(__file__).parent.absolute()) + os.sep + "lib" + os.sep + "pyneato"
-))
-
-print("%spyneato"%(
-  str(pathlib.Path(__file__).parent.absolute()) + os.sep + "lib" + os.sep + "pyneato"
-))
 _LOGGER = logging.getLogger(__name__)
 
 #Platform.SWITCH,

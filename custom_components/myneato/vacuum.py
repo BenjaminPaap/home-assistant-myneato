@@ -7,7 +7,7 @@ from typing import Any
 
 import voluptuous as vol
 
-from .lib.pyneato import (
+from pyneato import (
     Robot,
     RobotState,
     MyNeatoRobotException,

@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry
 
 from .const import MYNEATO_ROBOTS
 
-from .lib.pyneato import (
+from pyneato import (
     Account
 )
 
