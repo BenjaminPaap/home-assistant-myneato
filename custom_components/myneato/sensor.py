@@ -56,7 +56,7 @@ class MyNeatoSensor(SensorEntity):
         """Update Neato Sensor."""
         try:
             self._state = self.robot.state
-        except NeatoRobotException as ex:
+        except MyNeatoRobotException as ex:
             if self._available:
                 _LOGGER.error(
                     "Neato sensor connection error for '%s': %s", self.entity_id, ex
