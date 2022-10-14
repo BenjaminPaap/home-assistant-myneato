@@ -341,8 +341,12 @@ class MyNeatoVacuum(StateVacuumEntity):
     def return_to_base(self, **kwargs: Any) -> None:
         """Set the vacuum cleaner to return to the dock."""
         try:
+            if self._clean_state == STATE_PAUSED:
+                self.robot.return_to_base()
+            else:
+                self.robot.cancel_cleaning()
+        
             self._clean_state = STATE_RETURNING
-            self.robot.cancel_cleaning()
         except MyNeatoRobotException as ex:
             _LOGGER.error(
                 "Neato vacuum connection error for '%s': %s", self.entity_id, ex
