@@ -1,0 +1,24 @@
+custom_cleaning:
+  name: Zone Cleaning service
+  description: Zone Cleaning service call specific to Neato Botvacs.
+  target:
+    entity:
+      integration: myneato
+      domain: vacuum
+  fields:
+    mode:
+      name: Set cleaning mode
+      description: "Set the cleaning mode: eco, turbo or max. Defaults to eco if not set."
+      default: 'eco'
+      selector:
+        select:
+          options:
+            - 'eco'
+            - 'turbo'
+            - 'max'
+    zone:
+      name: Name of the zone to clean as shown in MyNeato App
+      description: Name of the zone to clean. Defaults to no zone i.e. complete house cleanup.
+      example: "Kitchen"
+      selector:
+        text:

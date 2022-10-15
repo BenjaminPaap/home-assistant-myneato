@@ -23,8 +23,6 @@ class MyNeatoHub:
             self.account.refresh_robots,
         )
 
-        _LOGGER.warning("Robots found %d" % len(self.account.robots))
-
     async def update_floorplans(self):
         await self._hass.async_add_executor_job(
             self.account.refresh_floorplans,
@@ -34,8 +32,6 @@ class MyNeatoHub:
             await self._hass.async_add_executor_job(
                 floorplan.refresh_tracks,
             )
-
-        _LOGGER.warning("Floorplans found %d" % len(self.account.floorplans))
 
     async def async_update_entry_unique_id(self, entry: ConfigEntry):
         """Update entry for unique_id."""

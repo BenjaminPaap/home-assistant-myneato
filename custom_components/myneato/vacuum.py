@@ -4,6 +4,7 @@ from __future__ import annotations
 from datetime import timedelta
 import logging
 from typing import Any
+from pyneato.enum import CleaningModeEnum
 
 import voluptuous as vol
 
@@ -62,6 +63,7 @@ ATTR_LAUNCHED_FROM = "launched_from"
 ATTR_NAVIGATION = "navigation"
 ATTR_CATEGORY = "category"
 ATTR_ZONE = "zone"
+ATTR_MODE = "mode"
 ATTR_TRACK = "track"
 
 
@@ -87,7 +89,7 @@ async def async_setup_entry(
     platform.async_register_entity_service(
         "custom_cleaning",
         {
-            vol.Optional(ATTR_MODE, default=2): cv.positive_int,
+            vol.Optional(ATTR_MODE, default=CleaningModeEnum.ECO.value): cv.string,
             vol.Optional(ATTR_TRACK): cv.string,
         },
         "myneato_custom_cleaning",
@@ -106,7 +108,7 @@ class MyNeatoVacuum(StateVacuumEntity):
         | VacuumEntityFeature.START
         | VacuumEntityFeature.CLEAN_SPOT
         | VacuumEntityFeature.STATE
-        | VacuumEntityFeature.MAP
+        # | VacuumEntityFeature.MAP
         | VacuumEntityFeature.LOCATE
     )
 
@@ -345,7 +347,7 @@ class MyNeatoVacuum(StateVacuumEntity):
                 self.robot.return_to_base()
             else:
                 self.robot.cancel_cleaning()
-        
+
             self._clean_state = STATE_RETURNING
         except MyNeatoRobotException as ex:
             _LOGGER.error(
@@ -364,7 +366,7 @@ class MyNeatoVacuum(StateVacuumEntity):
     def locate(self, **kwargs: Any) -> None:
         """Locate the robot by making it emit a sound."""
         try:
-            """self.robot.locate()"""
+            self.robot.find_me()
         except MyNeatoRobotException as ex:
             _LOGGER.error(
                 "Neato vacuum connection error for '%s': %s", self.entity_id, ex

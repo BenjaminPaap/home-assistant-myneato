@@ -1,10 +1,10 @@
 {
   "domain": "myneato",
-  "name": "MyNeato",
+  "name": "Neato MyNeato App",
   "config_flow": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "documentation": "https://github.com/BenjaminPaap/home-assistant-myneato",
-  "requirements": ["pyneato==0.0.3"],
+  "requirements": ["pyneato==0.0.4"],
   "codeowners": ["@BenjaminPaap"],
   "iot_class": "cloud_polling",
   "loggers": ["myneato"]

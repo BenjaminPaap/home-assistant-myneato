@@ -51,15 +51,11 @@ class MyNeatoConfigFlow(config_entries.ConfigFlow, domain=MYNEATO_DOMAIN):
 
         if user_input is not None:
             try:
-                _LOGGER.debug(user_input)
-                _LOGGER.warning("TEST")
                 session = await self.hass.async_add_executor_job(
                     self.is_valid,
                     user_input[CONF_EMAIL],
                     user_input[CONF_PASSWORD]
                 )
-                _LOGGER.warning(session)
-                _LOGGER.warning(session.is_active)
 
                 if session.is_active:
                     user_input[CONF_TOKEN] = session.access_token

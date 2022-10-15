@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.const import Platform, CONF_TOKEN
 from homeassistant.helpers.typing import ConfigType
 
-from pyneato import Account
+from pyneato import Account, MyNeatoException
 
 from .const import MYNEATO_DOMAIN, MYNEATO_LOGIN, MYNEATO_CONFIG, MYNEATO_ROBOTS, MYNEATO_FLOORPLANS
 from .api import ConfigEntrySession
@@ -57,7 +57,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     try:
         await hub.update_robots()
         await hub.update_floorplans()
-    except NeatoException as ex:
+    except MyNeatoException as ex:
         _LOGGER.debug("Failed to connect to MyNeato API")
         raise ConfigEntryNotReady from ex
 
@@ -74,6 +74,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload config entry."""
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
-        hass.data[NEATO_DOMAIN].pop(entry.entry_id)
+        hass.data[MYNEATO_DOMAIN].pop(entry.entry_id)
 
     return unload_ok
