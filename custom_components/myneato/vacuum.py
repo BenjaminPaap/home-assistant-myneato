@@ -90,7 +90,7 @@ async def async_setup_entry(
         "custom_cleaning",
         {
             vol.Optional(ATTR_MODE, default=CleaningModeEnum.ECO.value): cv.string,
-            vol.Optional(ATTR_TRACK): cv.string,
+            vol.Optional(ATTR_ZONE): cv.string,
         },
         "myneato_custom_cleaning",
     )
@@ -381,29 +381,32 @@ class MyNeatoVacuum(StateVacuumEntity):
                 "Neato vacuum connection error for '%s': %s", self.entity_id, ex
             )
 
-    def neato_custom_cleaning(
-        self, mode: str, navigation: str, category: str, zone: str | None = None
+    def myneato_custom_cleaning(
+        self, mode: str | None = None, zone: str | None = None
     ) -> None:
         """Zone cleaning service call."""
+        if mode == None:
+            mode = CleaningModeEnum.ECO
+        else:
+            mode = CleaningModeEnum(mode)
 
-        """
-        boundary_id = None
-        if zone is not None:
-            for boundary in self._robot_boundaries:
-                if zone in boundary["name"]:
-                    boundary_id = boundary["id"]
-            if boundary_id is None:
-                _LOGGER.error(
-                    "Zone '%s' was not found for the robot '%s'", zone, self.entity_id
-                )
-                return
-            _LOGGER.info("Start cleaning zone '%s' with robot %s", zone, self.entity_id)
+        zones = zone.split(',')
 
-        self._clean_state = STATE_CLEANING
+        tracks = []
+
+        floorplan = self._floorplans.pop()
+
+        for track in floorplan.tracks:
+            if track.name in zones:
+                tracks.append(track)
+
+        if len(tracks) == 0:
+            tracks = None
+
         try:
-            self.robot.start_cleaning(mode, navigation, category, boundary_id)
+            self.robot.start_cleaning(floorplan, tracks, mode)
+            self._clean_state = STATE_CLEANING
         except MyNeatoRobotException as ex:
             _LOGGER.error(
                 "Neato vacuum connection error for '%s': %s", self.entity_id, ex
             )
-        """
