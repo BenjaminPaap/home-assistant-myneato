@@ -63,7 +63,9 @@ class MyNeatoConfigFlow(config_entries.ConfigFlow, domain=MYNEATO_DOMAIN):
                 else:
                     errors["base"] = "auth_error"
                     return self.async_show_form(
-                        step_id="user", data_schema=AUTH_SCHEMA, errors=errors
+                        step_id="user",
+                        data_schema=AUTH_SCHEMA,
+                        errors=errors
                     )
 
                 return self.async_create_entry(title="MyNeato", data=data)
@@ -72,5 +74,7 @@ class MyNeatoConfigFlow(config_entries.ConfigFlow, domain=MYNEATO_DOMAIN):
                 errors["base"] = "auth"
 
         return self.async_show_form(
-            step_id="user", data_schema=AUTH_SCHEMA, errors=errors
+            step_id="user",
+            data_schema=AUTH_SCHEMA,
+            errors=errors
         )

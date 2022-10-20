@@ -1,5 +1,6 @@
 {
   "name": "MyNeato",
   "hacs": "1.6.0",
-  "homeassistant": "2022.10.0"
+  "homeassistant": "2022.10.0",
+  "render_readme": true
 }

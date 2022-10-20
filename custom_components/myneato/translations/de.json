@@ -1,0 +1,21 @@
+{
+  "config": {
+    "title": "MyNeato Konfiguration",
+    "step": {
+      "user": {
+        "title": "App Zugangsdaten",
+        "description": "Bitte gib deine Zugangsdaten für die MyNeato App ein.",
+        "data": {
+          "email": "Dein MyNeato Benutzer",
+          "password": "Dein MyNeato Passwort"
+        }
+      }
+    },
+    "error": {
+      "already_configured": "Gerät bereits konfiguriert"
+    },
+    "abort": {
+      "already_configured": "Gerät bereits konfiguriert"
+    }
+  }
+}
