@@ -1,1 +1,11 @@
 custom_components/myneato/lib
+home-assistant*
+.storage
+.HA_VERSION
+automations.yaml
+blueprints/
+configuration.yaml
+scenes.yaml
+scripts.yaml
+secrets.yaml
+**/__pycache__/
