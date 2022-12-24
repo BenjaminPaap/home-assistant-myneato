@@ -2,7 +2,7 @@
   "domain": "myneato",
   "name": "Neato MyNeato App",
   "config_flow": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "documentation": "https://github.com/BenjaminPaap/home-assistant-myneato",
   "issue_tracker": "https://github.com/BenjaminPaap/home-assistant-myneato/issues",
   "requirements": ["pyneato==0.0.7"],

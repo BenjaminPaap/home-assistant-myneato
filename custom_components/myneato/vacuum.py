@@ -10,6 +10,7 @@ import voluptuous as vol
 
 from pyneato import (
     Robot,
+    Floorplan,
     RobotState,
     MyNeatoRobotException,
     RobotStateEnum,
@@ -384,21 +385,26 @@ class MyNeatoVacuum(StateVacuumEntity):
     def myneato_custom_cleaning(
         self, mode: str | None = None, zone: str | None = None
     ) -> None:
+        zones: list
         """Zone cleaning service call."""
         if mode == None:
             mode = CleaningModeEnum.ECO
         else:
             mode = CleaningModeEnum(mode)
 
-        zones = zone.split(',')
+        if zone == None:
+            zones = []
+        else:
+            zones = zone.split(',')
 
-        tracks = []
+        tracks: list | None = []
+        floorplan: Floorplan | None = None
 
-        floorplan = self._floorplans.pop()
-
-        for track in floorplan.tracks:
-            if track.name in zones:
-                tracks.append(track)
+        if len(self._floorplans) > 0:
+            floorplan = self._floorplans[0]
+            for track in floorplan.tracks:
+                if track.name in zones:
+                    tracks.append(track)
 
         if len(tracks) == 0:
             tracks = None
