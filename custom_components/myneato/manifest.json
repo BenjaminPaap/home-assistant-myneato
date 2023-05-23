@@ -7,6 +7,6 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/BenjaminPaap/home-assistant-myneato/issues",
   "loggers": ["myneato"],
-  "requirements": ["pyneato==0.0.7"],
-  "version": "0.0.6"
+  "requirements": ["pyneato==0.0.8"],
+  "version": "0.0.7"
 }

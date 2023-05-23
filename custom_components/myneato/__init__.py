@@ -22,7 +22,7 @@ from .hub import MyNeatoHub
 _LOGGER = logging.getLogger(__name__)
 
 #Platform.SWITCH,
-PLATFORMS = [Platform.VACUUM, Platform.SENSOR]
+PLATFORMS = [Platform.CAMERA, Platform.VACUUM, Platform.SENSOR]
 
 SCAN_INTERVAL = timedelta(minutes=1)
 
